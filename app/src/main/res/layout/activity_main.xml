@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/hightlayout1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="Enter your hight in cm"
+        app:counterEnabled="true"
+        app:counterMaxLength="4"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+
+
+
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/hight"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+
+            android:inputType="number"
+            android:maxLength="4" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/weightlayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+
+
+        android:layout_marginTop="10dp"
+        android:hint="Enter your weight in kg"
+        app:counterEnabled="true"
+        app:counterMaxLength="4"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/weight"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+
+            android:inputType="number"
+            android:maxLength="4" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_below="@+id/hightlayout1"
+    android:layout_margin="10dp"
+    android:id="@+id/Rl2"
+    android:background="@drawable/etstyle"
+
+    >
+
+<com.google.android.material.textview.MaterialTextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/textview1"
+      android:text=""
+    android:layout_marginTop="10dp"
+      android:textColor="#E91E63"
+      android:textStyle="bold"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"
+
+
+    />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview2"
+        android:layout_below="@id/textview1"
+        android:layout_marginTop="35dp"
+        android:text=""
+        android:textStyle="bold"
+
+        android:textColor="#E91E63"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+
+        />
+
+
+</RelativeLayout>
+
+
+
+
+   <com.google.android.material.button.MaterialButton
+       android:layout_width="200dp"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/Rl2"
+       android:layout_centerHorizontal="true"
+       android:gravity="center"
+       android:text="calculate"
+       android:textSize="20dp"
+       app:cornerRadius="20dp"/>
+
+
+</RelativeLayout>
