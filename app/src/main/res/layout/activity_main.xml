@@ -23,6 +23,7 @@
         app:counterEnabled="true"
         app:counterMaxLength="4"
         app:endIconMode="clear_text"
+
         app:errorEnabled="true"
 
 
@@ -128,6 +129,7 @@
        android:gravity="center"
        android:text="calculate"
        android:textSize="20dp"
+       android:id="@+id/calculate"
        app:cornerRadius="20dp"/>
 
 
