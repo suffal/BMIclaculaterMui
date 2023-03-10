@@ -34,7 +34,7 @@
             android:id="@+id/hight"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-
+            android:background="@drawable/etstyle"
             android:inputType="number"
             android:maxLength="4" />
 
@@ -64,7 +64,7 @@
             android:id="@+id/weight"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-
+            android:background="@drawable/etstyle"
             android:inputType="number"
             android:maxLength="4" />
 
