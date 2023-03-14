@@ -23,6 +23,7 @@
         app:counterEnabled="true"
         app:counterMaxLength="4"
         app:endIconMode="clear_text"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded"
 
         app:errorEnabled="true"
 
@@ -34,7 +35,7 @@
             android:id="@+id/hight"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:background="@drawable/etstyle"
+
             android:inputType="number"
             android:maxLength="4" />
 
@@ -50,6 +51,8 @@
         android:layout_height="wrap_content"
 
 
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded"
+
         android:layout_marginTop="10dp"
         android:hint="Enter your weight in kg"
         app:counterEnabled="true"
@@ -64,7 +67,6 @@
             android:id="@+id/weight"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:background="@drawable/etstyle"
             android:inputType="number"
             android:maxLength="4" />
 
@@ -104,7 +106,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textview2"
         android:layout_below="@id/textview1"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="15dp"
         android:text=""
         android:textStyle="bold"
 

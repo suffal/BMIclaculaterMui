@@ -2,7 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
+    <item
+        android:id="@+id/item4"
+        android:title="Contect Us*"
+        >
+        <menu>
+            <item android:id="@+id/subitem1"
+                android:title="Dail phone number"/>
 
+
+           <item android:id="@+id/subitem2"
+               android:title="Call"/>
+
+
+
+            <item android:id="@+id/subitem3"
+                android:title="Email"/>
+
+
+        </menu>
+    </item>
     <item
         android:id="@+id/item1"
         android:title="About developer"
@@ -13,6 +32,13 @@
         android:id="@+id/item2"
         android:title="BMI Chart"
         >
+    </item>
+
+    <item
+        android:id="@+id/item5"
+        android:title="what is BMI"
+        >
+
     </item>
 
     <item
