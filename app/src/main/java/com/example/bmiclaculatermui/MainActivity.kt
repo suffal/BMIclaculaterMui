@@ -1,21 +1,28 @@
 package com.example.bmiclaculatermui
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.bmiclaculatermui.databinding.ActivityMainBinding
 import kotlin.math.round
+
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -137,12 +144,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(this, "BMI Chart", Toast.LENGTH_SHORT).show()
                     return true
                 }
-                R.id.item3 -> {
-                    finish()
-                    System.exit(0)
-                    Toast.makeText(this, "closed app", Toast.LENGTH_SHORT).show()
-                    return true
-                }
+
 
                 R.id.item4 -> {
                    // val intent = Intent(this, secoundActivity::class.java)
@@ -153,12 +155,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
                 R.id.item5 -> {
-                    // val intent = Intent(this, secoundActivity::class.java)
-                    // startActivity(intent)
+
                     Toast.makeText(this, "what is BMI", Toast.LENGTH_SHORT).show()
 
-                    val intent= Intent(Intent.ACTION_VIEW, Uri.parse("https://www.cdc.gov/healthyweight/assessing/bmi/index.html"))
+
+
+                  val intent=Intent(this,webview::class.java)
                     startActivity(intent)
+
+
+
 
                 }
 
@@ -207,7 +213,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val intent=Intent(Intent.ACTION_SENDTO).apply {
                         data= Uri.parse("mailto:")
                         putExtra(Intent.EXTRA_EMAIL, arrayOf("abhishekshuklagola82@gmail.com"))
-                      //  putExtra(Intent.EXTRA_SUBJECT,"my work is good")
+                        putExtra(Intent.EXTRA_SUBJECT,"Related to BMI app")
                     }
                     startActivity(intent)
 
@@ -245,10 +251,33 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onBackPressed() {
-      Toast.makeText(this,"please go to option menu and press the exit option",Toast.LENGTH_LONG).show()
+
+       val alertDialog= AlertDialog.Builder(this)
+        alertDialog.setTitle(resources.getString(R.string.app_name))
+        alertDialog.setMessage("Do you want to exit?")
+        alertDialog.setPositiveButton("Exit",object:DialogInterface.OnClickListener{
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+
+             finish()
+
+            }
+
+        })
+
+        alertDialog.setNegativeButton("No",object:DialogInterface.OnClickListener{
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+
+            }
+
+        })
+        var alert =alertDialog.create()
+        alertDialog.show()
+
+            
+        }
     }
 
-    }
+
 
 
 
