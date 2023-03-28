@@ -19,22 +19,43 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.bmiclaculatermui.databinding.ActivityMainBinding
+import com.example.bmiclaculatermui.viewmodel.mainactivityviewmodels
 import kotlin.math.round
 
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var binding: ActivityMainBinding
+     lateinit var binding: ActivityMainBinding
+     lateinit var viewModel:mainactivityviewmodels
     private var isclear: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+
+        binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
+
+        viewModel= ViewModelProvider(this)[mainactivityviewmodels::class.java]
 
         binding.calculate.setOnClickListener(this)
+
+
+        binding.lifecycleOwner=this
+
+        viewModel.totalBMI.observe(this, Observer {
+
+            binding.textview1.text=it.toString()
+        })
+        viewModel.result.observe(this, Observer {
+            binding.textview2.text=it.toString()
+        })
 
         if (isclear) {
             isclear = false
@@ -84,31 +105,39 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         binding.hight.isEnabled=false
 
 
-                        val hi = (binding.hight.editableText.toString().toDouble())
-                        val wi = (binding.weight.editableText.toString().toDouble())
+                        // use view model and call calculaterbmi function
+
+                        viewModel.calculateBMI(binding.hight.editableText.toString().toDouble(),binding.weight.editableText.toString().toDouble())
 
 
-                        if (hi == 0.0 || wi == 0.0) {
-                            Toast.makeText(this, "Invalid value", Toast.LENGTH_SHORT).show()
-                        } else {
-                            val hieght = hi.toFloat() / 100
-                            val BMI = wi.toFloat() / (hieght * hieght)
 
-                            val total = (round(BMI * 100) / 100.0)
+//                        val hi = (binding.hight.editableText.toString().toDouble())
+//                        val wi = (binding.weight.editableText.toString().toDouble())
 
-                            binding.textview1.text =
-                                "your BMI value= ${total}"// this is the bmi value
+//
+//                        if (hi == 0.0 || wi == 0.0) {
+//                            Toast.makeText(this, "Invalid value", Toast.LENGTH_SHORT).show()
+//                     }
 
-                            if (total < 18) {
-                                binding.textview2.text = "you are under weight"
-                            } else if (total >= 18 && total < 25) {
-                                binding.textview2.text = "you are healthy"
-                            } else if (total > 25) {
-                                binding.textview2.text = "you are over weight"
-                            }
+   //                     else {
+//                            val hieght = hi.toFloat() / 100
+//                            val BMI = wi.toFloat() / (hieght * hieght)
+//
+//                            val total = (round(BMI * 100) / 100.0)
+//
+//                            binding.textview1.text =
+//                                "your BMI value= ${total}"// this is the bmi value
+//
+//                            if (total < 18) {
+//                                binding.textview2.text = "you are under weight"
+//                            } else if (total >= 18 && total < 25) {
+//                                binding.textview2.text = "you are healthy"
+//                            } else if (total > 25) {
+//                                binding.textview2.text = "you are over weight"
+//                            }
 
 
-                        }
+                      //  }
 
 
                     }
@@ -235,7 +264,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             return super.onOptionsItemSelected(item)
         }
 
-    override fun onRequestPermissionsResult(
+
+
+override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
@@ -253,6 +284,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onBackPressed() {
 
        val alertDialog= AlertDialog.Builder(this)
+
         alertDialog.setTitle(resources.getString(R.string.app_name))
         alertDialog.setMessage("Do you want to exit?")
         alertDialog.setPositiveButton("Exit",object:DialogInterface.OnClickListener{
